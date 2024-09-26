@@ -20,9 +20,8 @@ namespace negocio
                 while (datos.Lector.Read())
                 {
                     Marca aux = new Marca();
-                    aux.id = (int)datos.Lector["Id"];
-                    aux.descripcion = (string)datos.Lector["Marca"];
-
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Descripcion = (string)datos.Lector["Marca"];
                     lista.Add(aux);
                 }
                 return lista;

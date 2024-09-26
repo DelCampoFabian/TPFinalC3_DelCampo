@@ -10,30 +10,20 @@ namespace dominio
     public class Articulo
     {
 
-        public int id { get; set; }
-        [DisplayName("Código")]
-        public string codigo { get; set; }
-        [DisplayName("Nombre")]
+        public int Id { get; set; }
+        public string Codigo { get; set; }
 
-        public string nombre { get; set; }
-        [DisplayName("Descripción")]
+        public string Nombre { get; set; }
 
-        public string descripcion { get; set; }
-        [DisplayName("Url imagen")]
+        public string Descripcion { get; set; }
 
-        public string imagenUrl { get; set; }
-        [DisplayName("Precio")]
+        public string ImagenUrl { get; set; }
 
-        public decimal precio {  get; set; }
-        [DisplayName("Categoria")]
+        public decimal Precio {  get; set; }
 
-        public Categoria categoria { get; set; }
-        [DisplayName("Marca")]
+        public Categoria Categoria { get; set; }
 
-        public Marca marca { get; set; }
-        
-
-
+        public Marca Marca { get; set; }
 
     }
 }

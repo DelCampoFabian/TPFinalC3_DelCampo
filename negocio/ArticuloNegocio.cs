@@ -23,19 +23,19 @@ namespace negocio
                 while (datos.Lector.Read())
                 {
                     Articulo aux = new Articulo();
-                    aux.id = (int)datos.Lector["Id"];
-                    aux.nombre = (string)datos.Lector["Nombre"];
-                    aux.codigo = (string)datos.Lector["Codigo"];
-                    aux.descripcion = (string)datos.Lector["Descripcion"];
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Codigo = (string)datos.Lector["Codigo"];
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];
                     if (!(datos.Lector["ImagenUrl"] is DBNull))
-                        aux.imagenUrl = (string)datos.Lector["ImagenUrl"];
-                    aux.categoria = new Categoria();
-                    aux.categoria.descripcion = (string)datos.Lector["Categoria"];
-                    aux.categoria.id= (int)datos.Lector["IdCategoria"];
-                    aux.marca = new Marca();
-                    aux.marca.id = (int)datos.Lector["IdMarca"];
-                    aux.marca.descripcion = (string)datos.Lector["Marca"];
-                    aux.precio = (decimal)datos.Lector["Precio"];
+                        aux.ImagenUrl = (string)datos.Lector["ImagenUrl"];
+                    aux.Categoria = new Categoria();
+                    aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
+                    aux.Categoria.Id= (int)datos.Lector["IdCategoria"];
+                    aux.Marca = new Marca();
+                    aux.Marca.Id = (int)datos.Lector["IdMarca"];
+                    aux.Marca.Descripcion = (string)datos.Lector["Marca"];
+                    aux.Precio = (decimal)datos.Lector["Precio"];
 
                     lista.Add(aux);
                 }
@@ -58,17 +58,14 @@ namespace negocio
             try
             {
                 datos.setearConsulta("insert into ARTICULOS (Codigo, Nombre,Descripcion,IdMarca,IdCategoria,ImagenUrl,Precio) values(@Codigo,@Nombre,@Descripcion,@idMarca,@idCategoria,@urlImagen,@Precio)");
-                datos.setearParametros("@Codigo",newArticulo.codigo);
-                datos.setearParametros("@Nombre", newArticulo.nombre);
-                datos.setearParametros("@Descripcion",newArticulo.descripcion);
-                datos.setearParametros("@idMarca", newArticulo.marca.id);
-                datos.setearParametros("@idCategoria", newArticulo.categoria.id);
-                datos.setearParametros("@urlImagen", newArticulo.imagenUrl);
-                datos.setearParametros("@Precio", newArticulo.precio);
-
+                datos.setearParametros("@Codigo",newArticulo.Codigo);
+                datos.setearParametros("@Nombre", newArticulo.Nombre);
+                datos.setearParametros("@Descripcion",newArticulo.Descripcion);
+                datos.setearParametros("@idMarca", newArticulo.Marca.Id);
+                datos.setearParametros("@idCategoria", newArticulo.Categoria.Id);
+                datos.setearParametros("@urlImagen", newArticulo.ImagenUrl);
+                datos.setearParametros("@Precio", newArticulo.Precio);
                 datos.accion();
-
-
             }
             catch (Exception ex)
             {
@@ -83,20 +80,19 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("update ARTICULOS set  Codigo=@Codigo, Nombre= @Nombre, Descripcion=@Desc, IdMarca = @IdMarca, IdCategoria=@IdCategoria, ImagenUrl = @Img, Precio = @Precio  where id = @id");
-                datos.setearParametros("@Nombre",articulo.nombre);
-                datos.setearParametros("@Codigo",articulo.codigo);
-                datos.setearParametros("@Desc", articulo.descripcion);
-                datos.setearParametros("@IdMarca", articulo.marca.id);
-                datos.setearParametros("@IdCategoria", articulo.categoria.id);
-                datos.setearParametros("@Img", articulo.imagenUrl);
-                datos.setearParametros("@Precio", articulo.precio);
-                datos.setearParametros("@Id", articulo.id);
+                datos.setearConsulta("update ARTICULOS set Codigo=@Codigo, Nombre=@Nombre, Descripcion=@Desc, IdMarca = @IdMarca, IdCategoria=@IdCategoria, ImagenUrl = @Img, Precio = @Precio  where id = @id");
+                datos.setearParametros("@Nombre",articulo.Nombre);
+                datos.setearParametros("@Codigo",articulo.Codigo);
+                datos.setearParametros("@Desc", articulo.Descripcion);
+                datos.setearParametros("@IdMarca", articulo.Marca.Id);
+                datos.setearParametros("@IdCategoria", articulo.Categoria.Id);
+                datos.setearParametros("@Img", articulo.ImagenUrl);
+                datos.setearParametros("@Precio", articulo.Precio);
+                datos.setearParametros("@Id", articulo.Id);
                 datos.accion();
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
