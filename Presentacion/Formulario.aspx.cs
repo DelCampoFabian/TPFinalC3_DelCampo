@@ -14,7 +14,12 @@ namespace Presentacion
         public bool ConfirmaEliminar { get;set;}
         protected void Page_Load(object sender, EventArgs e)
         {
-			try
+            if (!Seguridad.EsAdmin(Session["UserOnline"]))
+            {
+                Session.Add("Error", "No tiene los permisos para acceder");
+                Response.Redirect("Error.aspx", false);
+            }
+            try
 			{
                 if (!IsPostBack)
                 {
@@ -67,6 +72,10 @@ namespace Presentacion
         {
             try
             {
+                Page.Validate();
+                if (!Page.IsValid)
+                    return;
+
                 ArticuloNegocio negocio = new ArticuloNegocio();
                 Articulo temp = new Articulo();
                 temp.Nombre = txtNombre.Text;

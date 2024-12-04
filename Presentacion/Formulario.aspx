@@ -1,8 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MiMaster.Master" AutoEventWireup="true" CodeBehind="Formulario.aspx.cs" Inherits="Presentacion.Formulario" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .CampoRequerido{
+            color: #ff5555;
+            font-size: 12px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server" />    
     <div class="row g-3 col-10 m-auto">
         <div class="col-6">
             <div class="col-md-12">
@@ -12,14 +19,18 @@
             <div class="col-md-12">
                 <label for="txtNombre" class="form-label">Nombre</label>
                 <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" />
+                <asp:RequiredFieldValidator CssClass="CampoRequerido" ErrorMessage="Campo obligatorio" ControlToValidate="txtNombre" runat="server" />
             </div>
             <div class="col-md-12">
                 <label for="txtCodigo" class="form-label">Código</label>
                 <asp:TextBox runat="server" ID="txtCodigo" CssClass="form-control" />
+                <asp:RequiredFieldValidator CssClass="CampoRequerido" ErrorMessage="Campo obligatorio" ControlToValidate="txtCodigo" runat="server" />
             </div>
             <div class="col-md-12">
                 <label for="txtPrecio" class="form-label">Precio</label>
                 <asp:TextBox runat="server" ID="txtPrecio" CssClass="form-control" />
+                <asp:RequiredFieldValidator CssClass="CampoRequerido" ErrorMessage="Campo obligatorio" ControlToValidate="txtPrecio" runat="server" />
+                <asp:RegularExpressionValidator CssClass="CampoRequerido" ErrorMessage="Solo números" ValidationExpression="^[0-9]+$" ControlToValidate="txtPrecio" runat="server" />
             </div>
             <div class="col-md-12">
                 <label for="ddlMarca" class="form-label">Marca</label>
@@ -54,11 +65,15 @@
                 <label for="txtDescripcion" class="form-label">Descripción</label>
                 <asp:TextBox runat="server" ID="txtDescripcion" CssClass="form-control" TextMode="MultiLine" />
             </div>
-            <div class="col-md-12">
-                <label for="txtImg" class="form-label">Imagen Url</label>
-                <asp:TextBox runat="server" ID="txtImg" OnTextChanged="txtImg_TextChanged" AutoPostBack="true" CssClass="form-control" />
-                <asp:Image ID="imgArticulo" ImageUrl="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=" CssClass="img-fluid mt-2" Style="max-width: 400px" runat="server" />
-            </div>
+            <asp:UpdatePanel runat="server">
+                <ContentTemplate>
+                    <div class="col-md-12">
+                        <label for="txtImg" class="form-label">Imagen Url</label>
+                        <asp:TextBox runat="server" ID="txtImg" OnTextChanged="txtImg_TextChanged" AutoPostBack="true" CssClass="form-control" />
+                        <asp:Image ID="imgArticulo" ImageUrl="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=" CssClass="img-fluid mt-2" Style="max-width: 400px" runat="server" />
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
         </div>
     </div>
 </asp:Content>

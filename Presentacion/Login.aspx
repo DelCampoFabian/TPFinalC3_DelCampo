@@ -3,18 +3,18 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    
     <div class="row col-5 mt-3 m-auto border">
-        <h1 class="mt-3 mb-3">Login</h1>
+        <h1 class="text-center fs-2 m-3">Iniciar sesión</h1>
         <div class="mb-3">
             <label for="txtEmail" class="form-label">Email</label>
             <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server"></asp:TextBox>
         </div>
         <div class="mb-3">
             <label for="txtPassword" class="form-label">Password</label>
-            <asp:TextBox ID="txtPassword" CssClass="form-control" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtPassword" TextMode="Password" CssClass="form-control" runat="server"></asp:TextBox>
             <asp:Button Text="Aceptar" CssClass="btn btn-primary mt-3" ID="btnLogear" OnClick="btnLogear_Click" runat="server" />
-
-        
+            <asp:Label ID="lblError" CssClass="form-label text-danger" runat="server"></asp:Label>
         </div>
     </div>
 </asp:Content>

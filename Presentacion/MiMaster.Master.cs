@@ -12,13 +12,19 @@ namespace Presentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!(Page is Login || Page is Default || Page is Error || Page is Detalle))
+            if(!(Page is Login || Page is Default || Page is Error || Page is Detalle || Page is Registro))
             {
                 if (!Seguridad.SesionActiva(Session["UserOnline"]))
                 {
                     Response.Redirect("Login.aspx", false);
                 }
             }
+        }
+
+        protected void btnSalir_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Response.Redirect("Default.aspx", false);
         }
     }
 }

@@ -6,7 +6,7 @@
     <div class="row">
         <div class="d-flex justify-content-center">
             <div class="pe-4">
-                <asp:Image ID="imgDetalle" CssClass="img-fluid" runat="server" />
+                <asp:Image ID="imgDetalle" CssClass="img-fluid" style="width:300px;" runat="server" />
             </div>
             <div class="d-flex flex-column ps-4">
                 <asp:Label ID="lblNombre" cssClass="fs-1 fw-bold" runat="server" Text=""></asp:Label>
@@ -25,8 +25,6 @@
 
                 </div>
             </div>
-        </div>
-            
-            
+        </div>    
     </div>
 </asp:Content>

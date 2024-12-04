@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Xml.Serialization;
+using System.Web.Configuration;
+using System.Configuration;
 
 namespace negocio
 {
@@ -20,7 +22,7 @@ namespace negocio
 
         public AccesoDatos()
         {
-            conexion = new SqlConnection("server=DESKTOP-P72N324\\SQLEXPRESS; database=CATALOGO_WEB_DB; integrated security=true");
+            conexion = new SqlConnection(ConfigurationManager.AppSettings["cadenaConexion"]);
             comando = new SqlCommand();
         }
         public void setearConsulta(string consulta)
@@ -42,6 +44,21 @@ namespace negocio
                 throw ex;
             }
         }
+        public int accionScalar()
+        {
+            comando.Connection = conexion;
+            try
+            {
+                conexion.Open();
+                return (int)comando.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public void accion()
         {
             comando.Connection = conexion;

@@ -22,17 +22,25 @@ namespace Presentacion
             UserNegocio Negocio = new UserNegocio();
             try
             {
-                Usuario.Email = txtEmail.Text;
-                Usuario.Password = txtPassword.Text;
+                if(Validacion.ValidarCampo(txtEmail) || Validacion.ValidarCampo(txtPassword))
+                {
+                    lblError.Text = "Completa ambos campos";
+                    return;
+                }
+                    Usuario.Email = txtEmail.Text;
+                    Usuario.Password = txtPassword.Text;
 
                 if (Negocio.Logear(Usuario))
                 {
                     Session.Add("UserOnline", Usuario);
                     Response.Redirect("Default.aspx", false);
+                }
+                else
+                {
+                    lblError.Text = "Email o Password incorrecto";
                 } 
-
-
             }
+            catch (System.Threading.ThreadAbortException ex) { }
             catch (Exception ex)
             {
                 Session.Add("Error", ex.ToString());
